@@ -7,15 +7,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build Android APK
-        # هاد الأداة هي الرسمية والمستقرة 100%
-        uses: pwa-builder/pwa-starter-action@v2.1.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          url: 'https://dn-e-sport-clan-ff.vercel.app'
+          node-version: '20'
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Build APK
+        # هاد الخطوة كتحيد الاعتماد على أي Action برانية
+        run: |
+          yes | bubblewrap init --manifest=https://dn-e-sport-clan-ff.vercel.app/manifest.json
+          bubblewrap build
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: DN-CLAN-APP
-          path: ./**/*.apk
+          path: ./*.apk
           
