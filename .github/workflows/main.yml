@@ -4,17 +4,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4 # تحديث لـ v4
 
       - name: Build Android App
-        uses: bubblewrap/android-build-action@v1
+        # استعملنا أداة مباشرة ومحدثة
+        uses: pwa-builder/pwa-auth-action@v1 
         with:
-          swUrl: 'https://dn-e-sport-clan-ff.vercel.app/sw.js'
-          manifestUrl: 'https://dn-e-sport-clan-ff.vercel.app/manifest.json'
+          url: 'https://dn-e-sport-clan-ff.vercel.app'
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # تحديث لـ v4 باش يتحل الخطأ
         with:
           name: DN-CLAN-APP
-          path: ./*.apk
+          path: ./**/*.apk
           
