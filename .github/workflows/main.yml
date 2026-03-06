@@ -8,14 +8,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Android APK
-        uses: bubblewrap/android-build-action@v1.5.0
+        uses: pwa-builder/pwa-starter-action@v2
         with:
-          swUrl: 'https://dn-e-sport-clan-ff.vercel.app/sw.js'
-          manifestUrl: 'https://dn-e-sport-clan-ff.vercel.app/manifest.json'
+          url: 'https://dn-e-sport-clan-ff.vercel.app'
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: DN-CLAN-APK
-          path: ./*.apk
+          path: ./**/*.apk
           
