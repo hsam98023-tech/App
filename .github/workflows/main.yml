@@ -1,0 +1,20 @@
+name: Generate APK
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Android App
+        uses: bubblewrap/android-build-action@v1
+        with:
+          swUrl: 'https://dn-e-sport-clan-ff.vercel.app/sw.js'
+          manifestUrl: 'https://dn-e-sport-clan-ff.vercel.app/manifest.json'
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: DN-CLAN-APP
+          path: ./*.apk
+          
